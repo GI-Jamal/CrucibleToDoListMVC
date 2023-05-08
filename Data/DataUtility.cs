@@ -42,43 +42,43 @@ namespace CrucibleToDoListMVC.Data
             await dbContextSvc.Database.MigrateAsync();
 
             // Seed Demo User(s)
-            await SeedDemoUsersAsync(userManagerSvc, configurationSvc);
+            // await SeedDemoUsersAsync(userManagerSvc, configurationSvc);
         }
 
 
         // Demo Users Seed Method
-        private static async Task SeedDemoUsersAsync(UserManager<AppUser> userManagerSvc, IConfiguration configuration)
-        {
-            string? demoEmail = configuration["DemoLoginEmail"] ?? Environment.GetEnvironmentVariable("DemoLoginEmail");
-            string? demoPassword = configuration["DemoLoginPassword"] ?? Environment.GetEnvironmentVariable("DemoLoginPassword");
+        //private static async Task SeedDemoUsersAsync(UserManager<AppUser> userManagerSvc, IConfiguration configuration)
+        //{
+        //    string? demoEmail = configuration["DemoLoginEmail"] ?? Environment.GetEnvironmentVariable("DemoLoginEmail");
+        //    string? demoPassword = configuration["DemoLoginPassword"] ?? Environment.GetEnvironmentVariable("DemoLoginPassword");
             
 
-            AppUser? demoUser = new AppUser()
-            {
-                UserName = demoEmail,
-                Email = demoEmail,
-                FirstName = "Demo",
-                LastName = "User",
-                EmailConfirmed = true,
-            };
+        //    AppUser? demoUser = new AppUser()
+        //    {
+        //        UserName = demoEmail,
+        //        Email = demoEmail,
+        //        FirstName = "Demo",
+        //        LastName = "User",
+        //        EmailConfirmed = true,
+        //    };
 
-            try
-            {
-                AppUser? user = await userManagerSvc.FindByEmailAsync(demoUser.Email!);
+        //    try
+        //    {
+        //        AppUser? user = await userManagerSvc.FindByEmailAsync(demoUser.Email!);
 
-                if (user == null)
-                {
-                    await userManagerSvc.CreateAsync(demoUser, demoPassword!);
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("*************  ERROR  *************");
-                Console.WriteLine("Error Seeding Demo Login User.");
-                Console.WriteLine(ex.Message);
-                Console.WriteLine("***********************************");
-                throw;
-            }
-        }
+        //        if (user == null)
+        //        {
+        //            await userManagerSvc.CreateAsync(demoUser, demoPassword!);
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Console.WriteLine("*************  ERROR  *************");
+        //        Console.WriteLine("Error Seeding Demo Login User.");
+        //        Console.WriteLine(ex.Message);
+        //        Console.WriteLine("***********************************");
+        //        throw;
+        //    }
+        //}
     }
 }
